@@ -1,3 +1,5 @@
+package cl.frojas.test;
+
 import cl.frojas.constantes.Constantes;
 import cl.frojas.excepciones.LogicaNegocioException;
 import cl.frojas.negocio.ConsultaSaldo;

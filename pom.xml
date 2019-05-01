@@ -6,7 +6,7 @@
 
     <groupId>cl.frojas</groupId>
     <artifactId>saldo-metro-valpo</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <name>github holapancho saldo metro valpo</name>
     <description>Obtener saldo de la tarjeta del metro</description>
     <url>https://github.com/holapancho/saldo-metro-valpo</url>
