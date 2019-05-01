@@ -2,6 +2,7 @@ package cl.frojas.negocio;
 
 import cl.frojas.excepciones.LogicaNegocioException;
 import cl.frojas.pojo.RespuestaServicio;
+import cl.frojas.pojo.Viaje;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.fluent.Form;
@@ -9,10 +10,14 @@ import org.apache.http.client.fluent.Request;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static cl.frojas.constantes.Constantes.*;
 
@@ -46,6 +51,21 @@ public class ConsultaSaldoImpl implements ConsultaSaldo {
 
         Document document = Jsoup.parse(respuestaString);
         String monto = document.child(0).child(1).child(0).getElementsByTag("strong").text();
-        return new RespuestaServicio(monto);
+
+        List<Viaje> viajes = null;
+        Elements elementsViajes = document.child(0).child(1).getElementsByTag("ul");
+        if(!((Elements) elementsViajes).isEmpty()){
+            viajes = new ArrayList<>();
+            for(Element viajeElement: elementsViajes){
+                Viaje viaje = new Viaje(
+                        viajeElement.child(1).getElementsByTag("strong").text(),
+                        viajeElement.child(2).getElementsByTag("strong").text(),
+                        viajeElement.child(0).getElementsByTag("strong").text()
+                );
+                viajes.add(viaje);
+            }
+        }
+
+        return new RespuestaServicio(monto,viajes);
     }
 }
