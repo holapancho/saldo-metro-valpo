@@ -1,7 +1,9 @@
 package cl.frojas.negocio;
 
+import cl.frojas.pojo.RespuestaServicio;
+
 public interface ConsultaSaldo {
 
-    String consultarSaldo (String tarjeta) throws Exception;
+    RespuestaServicio consultarSaldo (String tarjeta) throws Exception;
 
 }

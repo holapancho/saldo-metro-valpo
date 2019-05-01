@@ -1,4 +1,4 @@
-package provider;
+package cl.frojas.provider;
 
 import cl.frojas.negocio.ConsultaSaldo;
 import cl.frojas.negocio.ConsultaSaldoImpl;
